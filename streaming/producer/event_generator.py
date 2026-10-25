@@ -1,6 +1,6 @@
 """
 High-throughput Synthetic Omnichannel Event Generator
-Simulates real-world messaging traffic (Blip, WhatsApp Cloud API) and streams
+Simulates real-world messaging traffic (WhatsApp Cloud API) and streams
 records into Kafka / Redpanda or Google Cloud Pub/Sub.
 """
 
