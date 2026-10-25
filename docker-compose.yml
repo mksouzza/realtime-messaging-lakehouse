@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # Streaming Message Broker (Kafka API Compatible)
+  redpanda:
+    image: docker.redpanda.com/redpandadata/redpanda:v23.3.10
+    container_name: messaging_broker
+    command:
+      - redpanda start
+      - --smp 1
+      - --memory 1G
+      - --reserve-memory 0M
+      - --overprovisioned
+      - --node-id 0
+      - --kafka-addr PLAINTEXT://0.0.0.0:29092,OUTSIDE://0.0.0.0:9092
+      - --advertise-kafka-addr PLAINTEXT://redpanda:29092,OUTSIDE://localhost:9092
+    ports:
+      - "9092:9092"
+      - "9644:9644"
+
+  # Web UI for Kafka Topics & Event Inspection
+  redpanda-console:
+    image: docker.redpanda.com/redpandadata/console:v2.4.3
+    container_name: messaging_console
+    ports:
+      - "8085:8080"
+    environment:
+      KAFKA_BROKERS: "redpanda:29092"
+    depends_on:
+      - redpanda
+
+  # Local Cloud Object Storage Emulation (GCS / S3 compatible)
+  minio:
+    image: minio/minio:RELEASE.2024-01-18T22-51-28Z
+    container_name: lakehouse_storage
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+
+  # Automated bucket provisioning for Medallion layers
+  minio-init:
+    image: minio/mc:RELEASE.2024-01-16T16-06-34Z
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      sleep 3;
+      /usr/bin/mc alias set local http://minio:9000 minioadmin minioadmin;
+      /usr/bin/mc mb --ignore-existing local/lakehouse-bronze;
+      /usr/bin/mc mb --ignore-existing local/lakehouse-silver;
+      /usr/bin/mc mb --ignore-existing local/lakehouse-gold;
+      exit 0;
+      "

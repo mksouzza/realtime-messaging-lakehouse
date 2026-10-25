@@ -1,0 +1,36 @@
+# Python & Virtual Environments
+.venv/
+venv/
+ENV/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*._override.tf
+*._override.tf.json
+terraform.tfvars
+
+# Data & Lakehouse local artifacts
+spark-warehouse/
+metastore_db/
+derby.log
+.checkpoint/
+data/
+
+# Environment Variables & Keys
+.env
+*.json
+!key.json.example
+
+# IDE
+.vscode/
+.idea/
+.DS_Store

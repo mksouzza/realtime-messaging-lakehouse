@@ -1,0 +1,38 @@
+name: "Lakehouse Pipeline & Schema Tests"
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "streaming/**"
+      - "lakehouse/**"
+      - ".github/workflows/spark-tests.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "streaming/**"
+      - "lakehouse/**"
+      - ".github/workflows/spark-tests.yml"
+
+jobs:
+  python-tests:
+    name: "Run Pipeline Unit Tests"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pydantic pytest
+
+      - name: Run Schema & Event Generation Tests
+        run: |
+          pytest -v streaming/producer/test_schemas.py
