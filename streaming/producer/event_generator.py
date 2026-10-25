@@ -118,7 +118,7 @@ def run_producer(
     logger.info("Initializing synthetic stream generator (Target: %s, Rate: %d eps)...", target, events_per_second)
 
     producer = None
-    topic = os.getenv("KAFKA_TOPIC_MESSAGING_EVENTS", "blip.omnichannel.events.v1")
+    topic = os.getenv("KAFKA_TOPIC_MESSAGING_EVENTS", "omnichannel.events.v1")
 
     if target == "kafka":
         try:
