@@ -1,6 +1,6 @@
 """
 Data Schemas for Omnichannel Messaging Events
-Modeled after enterprise conversational platforms (e.g. Blip, WhatsApp Business API).
+Modeled after enterprise conversational platforms (e.g. WhatsApp Business API).
 """
 
 from datetime import datetime
