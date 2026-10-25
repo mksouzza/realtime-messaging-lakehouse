@@ -5,8 +5,8 @@ Modeled after enterprise conversational platforms (e.g. Blip, WhatsApp Business 
 
 from datetime import datetime
 from enum import Enum
-from typing import Optional, Dict, Any
-from pydantic import BaseModel, Field
+from typing import Optional
+from pydantic import BaseModel, Field, ConfigDict
 import uuid
 
 
@@ -41,6 +41,8 @@ class LLMMetadata(BaseModel):
 
 class OmnichannelMessageEvent(BaseModel):
     """Core omnichannel event payload ingested into the real-time Lakehouse."""
+    model_config = ConfigDict(use_enum_values=True)
+
     event_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     conversation_id: str = Field(..., description="Unified conversation session thread ID")
     channel: ChannelType
@@ -54,8 +56,3 @@ class OmnichannelMessageEvent(BaseModel):
     is_handoff_to_human: bool = Field(default=False)
     error_code: Optional[str] = None
     llm_telemetry: Optional[LLMMetadata] = None
-
-    class Config:
-        json_encoders = {
-            datetime: lambda v: v.isoformat()
-        }

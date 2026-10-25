@@ -136,10 +136,10 @@ resource "google_bigquery_dataset" "messaging_analytics" {
 }
 
 resource "google_bigquery_dataset" "messaging_governance" {
-  dataset_id                  = "messaging_governance_${var.environment}"
-  friendly_name               = "Messaging Data Governance & Auditing"
-  description                 = "Audit trails, data quality test metrics, and pipeline execution logs."
-  location                    = var.region
+  dataset_id    = "messaging_governance_${var.environment}"
+  friendly_name = "Messaging Data Governance & Auditing"
+  description   = "Audit trails, data quality test metrics, and pipeline execution logs."
+  location      = var.region
 
   labels = {
     environment = var.environment

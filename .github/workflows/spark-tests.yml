@@ -31,8 +31,8 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pydantic pytest
+          pip install pydantic pytest python-dotenv
 
       - name: Run Schema & Event Generation Tests
         run: |
-          pytest -v streaming/producer/test_schemas.py
+          python -m pytest -v streaming/producer/test_schemas.py

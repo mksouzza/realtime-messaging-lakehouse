@@ -12,7 +12,17 @@ import time
 import hashlib
 from datetime import datetime
 from typing import Optional
-from dotenv import load_dotenv
+import sys
+from pathlib import Path
+
+# Add current directory to path
+sys.path.insert(0, str(Path(__file__).parent))
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 from schemas import (
     OmnichannelMessageEvent,
