@@ -55,7 +55,7 @@ flowchart TD
 
 ---
 
-## Architectural Pillars & Design Decisions
+## Engineering Highlights
 
 ### 1. Cloud Modernization: Azure/Databricks to GCP
 * **Decoupled Storage & Compute:** Replaced vendor-locked compute instances with serverless GCS object storage and ephemeral Dataproc/PySpark clusters, drastically reducing idle cluster overhead.
