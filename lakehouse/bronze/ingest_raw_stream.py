@@ -82,7 +82,7 @@ def stream_kafka_to_bronze(
 
 if __name__ == "__main__":
     kafka_brokers = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
-    kafka_topic = os.getenv("KAFKA_TOPIC_MESSAGING_EVENTS", "blip.omnichannel.events.v1")
+    kafka_topic = os.getenv("KAFKA_TOPIC_MESSAGING_EVENTS", "omnichannel.events.v1")
     bronze_path = os.getenv("BRONZE_DELTA_PATH", "./data/lakehouse/bronze")
     checkpoint_path = os.getenv("BRONZE_CHECKPOINT_PATH", "./data/checkpoints/bronze")
 
