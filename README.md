@@ -8,7 +8,7 @@
 [![BigQuery](https://img.shields.io/badge/BigQuery-Analytics%20Marts-669DF6.svg?logo=google-cloud&logoColor=white)](https://cloud.google.com/bigquery)
 [![Docker](https://img.shields.io/badge/Docker-Local%20Sandbox-2496ED.svg?logo=docker&logoColor=white)](https://www.docker.com/)
 
-An enterprise-grade, end-to-end **Real-Time Streaming Lakehouse** architected for high-velocity conversational messaging platforms (e.g., **Blip / Take Blip**, WhatsApp Business API, Instagram Direct, and Webchat). 
+An enterprise-grade, end-to-end **Real-Time Streaming Lakehouse** architected for high-velocity conversational messaging platforms (e.g., WhatsApp Business API, Instagram Direct, and Webchat). 
 
 This platform demonstrates the architectural modernization and migration from legacy monolithic cloud stacks (Azure / Databricks) to a cloud-native, decoupled, cost-optimized **Modern Lakehouse on Google Cloud Platform (GCP)**—featuring Infrastructure as Code (**Terraform**), distributed real-time streaming (**PySpark + Kafka/PubSub**), transactional storage (**Delta Lake**), and analytical serving (**BigQuery**).
 
@@ -22,7 +22,7 @@ flowchart TD
         W1["WhatsApp Business API"] --> P1["Omnichannel Event Producer<br/>(Python / Pydantic)"]
         W2["Instagram / Webchat"] --> P1
         W3["LLM / Generative AI Bots"] --> P1
-        P1 -->|JSON Events| B1["GCP Cloud Pub/Sub / Redpanda<br/>(blip.omnichannel.events.v1)"]
+        P1 -->|JSON Events| B1["GCP Cloud Pub/Sub / Redpanda<br/>(omnichannel.events.v1)"]
         B1 -.->|Dead Letter| DLQ["omnichannel-messaging-dlq"]
     end
 
