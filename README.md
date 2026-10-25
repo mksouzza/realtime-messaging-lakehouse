@@ -189,5 +189,5 @@ terraform apply
 This project is part of a comprehensive three-pillar Data Engineering portfolio:
 
 1. **[Real-Time Omnichannel Messaging Lakehouse](https://github.com/mksouzza/realtime-messaging-lakehouse)** (Current Project): Streaming, Medallion Lakehouse, PySpark, Delta Lake, and GCP Terraform.
-2. **[Commodities Data Warehouse & Analytics Platform](https://github.com/mksouzza/open-dw-workshop)**: Batch ELT, dimensional modeling, dbt-core, PostgreSQL, and Streamlit.
-3. **[Airflow Data Pipeline Orchestrator](https://github.com/mksouzza/modern-stack)**: Central workflow orchestration, TaskFlow API, failure alerts, SLA monitoring, and Astro CLI.
+2. **[Commodities Data Warehouse & Analytics Platform](https://github.com/mksouzza/commodities-data-warehouse)**: Batch ELT, dimensional modeling, dbt-core, PostgreSQL, and Streamlit.
+3. **[Airflow Data Pipeline Orchestrator](https://github.com/mksouzza/airflow-data-orchestrator)**: Central workflow orchestration, TaskFlow API, failure alerts, SLA monitoring, and Astro CLI.
